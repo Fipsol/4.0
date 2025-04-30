@@ -6,48 +6,70 @@ Kod bazowy programu Commit4_0:
 • Klasa Service obsługuje odczyt i zapis do pliku bazy danych.
 • Klasa Student reprezentuje pojedynczego studenta (Imię, Wiek).
 */
-import java.io.IOException;
 import java.util.Scanner;
+import java.io.IOException;
+
 class Main {
   public static void main(String[] args) {
     try {
+      Scanner skan = new Scanner(System.in);
       Service s = new Service();
-      int opcja;
-      Scanner sc = new Scanner(System.in);
-      boolean isTrue = true;
-      String name, surName;
+      String name;
+      String surName;
+      int day, month, year;
       int age;
-      while(isTrue)
-        {
-          System.out.println("1. Dodaj studenta");
-          System.out.println("2. Wypisz studentow");
-          System.out.println("3. Wyjdz");
-          opcja = sc.nextInt();
-          switch (opcja) {
-            case 1:
-                System.out.println("Podaj imie: ");
-                name = sc.next();
-                System.out.println("Podaj nazwisko: ");
-                surName = sc.next();
-                System.out.println("Podaj wiek: ");
-                age = sc.nextInt();
-                Student student = new Student(name, surName, age);
-                s.addStudent(student);
-                break;
-            case 2:
-                students = s.getStudents();
-                for(Student current : students) {
-                  System.out.println(current.ToString());
-                }
-                break;
-            case 3:
-                isTrue = false;
-                break;
+      int x;
+      while (true) {
+
+        System.out.println("Co chciabys zrobić?");
+        System.out.println("1. Dodaj studenta");
+        System.out.println("2. Wypisz studentów");
+        System.out.println("0. Wyjście ");
+        System.out.println(" \n");
+        x = skan.nextInt();
+        switch (x) {
+          case 1:
+            System.out.println("Podaj imie: ");
+            name = skan.next();
+            System.out.println("Podaj nazwisko: ");
+            surName = skan.next();
+            System.out.println("Podaj wiek: ");
+            age = skan.nextInt();
+            System.out.println("Podaj dzien urodzenia : ");
+            day = skan.nextInt();
+
+            if (day < 1 || day > 31) {
+              System.out.println("Podaj poprawny dzien urodzenia : ");
+              day = skan.nextInt();
             }
+            System.out.println("Podaj miesiac urodzenia : ");
+            month = skan.nextInt();
+            if (month < 1 || month > 12) {
+              System.out.println("Podaj poprawny miesiac urodzenia : ");
+              month = skan.nextInt();
+            }
+            System.out.println("Podaj rok urodzenia : ");
+            year = skan.nextInt();
+            if (year < 1 || year > 3000) {
+              System.out.println("Podaj poprawny rok urodzenia : ");
+              year = skan.nextInt();
+            }
+            Student s1 = new Student(name, surName, age, day, month, year);
+            s.addStudent(s1);
+            break;
+          case 2:
+
+            var students = s.getStudents();
+            for (Student current : students) {
+              System.out.println(current.ToString());
+            }
+            break;
+          case 0:
+            System.exit(0);
         }
-      
-    } 
-    catch (IOException e) {
+      }
+    } catch (IOException e) {
+
     }
   }
 }
