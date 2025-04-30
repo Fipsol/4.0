@@ -1,3 +1,4 @@
+
 /*
 Kod bazowy programu Commit4_0: 
 • Program dodaje do prostej bazy danych (pliku db.txt) dane odnośnie Studentów.
@@ -24,6 +25,7 @@ class Main {
         System.out.println("Co chciabys zrobić?");
         System.out.println("1. Dodaj studenta");
         System.out.println("2. Wypisz studentów");
+        System.out.println("3. Znajdź studenta po imieniu");
         System.out.println("0. Wyjście ");
         System.out.println(" \n");
         x = skan.nextInt();
@@ -63,6 +65,15 @@ class Main {
             for (Student current : students) {
               System.out.println(current.ToString());
             }
+            break;
+          case 3:
+            System.out.println("Podaj imie: ");
+            name = skan.next();
+            Student student = s.findStudentByName(name);
+            if (student != null)
+              System.out.println(student.ToString());
+            else
+              System.out.println("Nie znaleziono studenta o imieniu " + name);
             break;
           case 0:
             System.exit(0);
